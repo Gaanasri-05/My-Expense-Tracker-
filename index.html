@@ -2,73 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Expense Tracker</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Expense Tracker 💸</h1>
-
+    <h2>💸 Expense Tracker</h2>
     <div class="balance-box">
-      <h2>Your Balance</h2>
-      <p id="balance">₹0.00</p>
+      <h3>Your Balance</h3>
+      <h1 id="balance">₹0</h1>
     </div>
-
-    <div class="income-expense">
-      <div class="income">
-        <h3>Income</h3>
-        <p id="income">₹0.00</p>
+    <div class="summary">
+      <div>
+        <h4>Income</h4>
+        <p id="income" class="money plus">+₹0</p>
       </div>
-      <div class="expense">
-        <h3>Expense</h3>
-        <p id="expense">₹0.00</p>
+      <div>
+        <h4>Expense</h4>
+        <p id="expense" class="money minus">-₹0</p>
       </div>
     </div>
-
-    <div class="add-transaction">
-      <h3>Add Transaction</h3>
-      <input type="text" id="text" placeholder="Enter text" />
-      <input type="number" id="amount" placeholder="Enter amount" />
-      <button onclick="addTransaction()">Add</button>
-    </div>
-
+    <h3>History</h3>
     <ul id="list" class="list"></ul>
+    <h3>Add Transaction</h3>
+    <form id="form">
+      <input type="text" id="text" placeholder="Enter description" required />
+      <input type="number" id="amount" placeholder="Enter amount (+/-)" required />
+      <button class="btn">Add Transaction</button>
+    </form>
   </div>
-
-  <script>
-    let transactions = [];
-
-    function addTransaction() {
-      const text = document.getElementById('text').value;
-      const amount = parseFloat(document.getElementById('amount').value);
-      if (!text || isNaN(amount)) return alert("Enter valid details");
-
-      const transaction = { id: Date.now(), text, amount };
-      transactions.push(transaction);
-      updateDOM();
-    }
-
-    function updateDOM() {
-      const list = document.getElementById('list');
-      const income = transactions.filter(t => t.amount > 0).reduce((acc, t) => acc + t.amount, 0);
-      const expense = transactions.filter(t => t.amount < 0).reduce((acc, t) => acc + t.amount, 0);
-
-      document.getElementById('income').innerText = '₹${income.toFixed(2)}';
-      document.getElementById('expense').innerText = '₹${Math.abs(expense).toFixed(2)}';
-      document.getElementById('balance').innerText = '₹${(income + expense).toFixed(2)}';
-
-      list.innerHTML = '';
-      transactions.forEach(t => {
-        const li = document.createElement('li');
-        li.classList.add(t.amount < 0 ? 'minus' : 'plus');
-        li.innerHTML = '${t.text} <span>₹${t.amount}</span>';
-        list.appendChild(li);
-      });
-
-      document.getElementById('text').value = '';
-      document.getElementById('amount').value = '';
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
+
