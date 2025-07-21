@@ -15,11 +15,15 @@ body {
 }
 
 .container {
-  width: 360px;
-  padding: 2rem;
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
   background: #fff;
   box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   border-radius: 16px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
 }
 
 h2 {
@@ -62,11 +66,15 @@ h2 {
 
 .list {
   list-style: none;
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 10px;
   margin-bottom: 1.5rem;
 }
 
 .list li {
   background: #fafafa;
+  
   padding: 10px;
   border-left: 5px solid;
   margin: 8px 0;

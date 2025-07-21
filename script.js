@@ -43,10 +43,18 @@ function updateDOM() {
 function updateValues() {
   const amounts = transactions.map(t => t.amount);
   const total = amounts.reduce((acc, item) => acc + item, 0).toFixed(2);
-  const incomeTotal = amounts.filter(a => a > 0).reduce((acc, item) => acc + item, 0).toFixed(2);
-  const expenseTotal = (amounts.filter(a => a < 0).reduce((acc, item) => acc + item, 0) * -1).toFixed(2);
+  const incomeTotal = amounts
+    .filter(a => a > 0)
+    .reduce((acc, item) => acc + item, 0)
+    .toFixed(2);
+  const expenseTotal = (
+    amounts
+      .filter(a => a < 0)
+      .reduce((acc, item) => acc + item, 0) * -1
+  ).toFixed(2);
 
-  balance.innerText = '₹${total}';
-  income.innerText = '+₹${incomeTotal}';
-  expense.innerText = '-₹${expenseTotal}';
+  // ✅ Use backticks for template strings
+  balance.innerText = `₹${total}`;
+  income.innerText = `+₹${incomeTotal}`;
+  expense.innerText = `-₹${expenseTotal}`;
 }
